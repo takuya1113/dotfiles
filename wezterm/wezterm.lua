@@ -134,10 +134,16 @@ config.key_tables = {
     { key = "j", action = wezterm.action.CopyMode "MoveDown" },
     { key = "k", action = wezterm.action.CopyMode "MoveUp" },
     { key = "l", action = wezterm.action.CopyMode "MoveRight" },
+    { key = "u", action = wezterm.action.CopyMode "PageUp" },
+    { key = "d", action = wezterm.action.CopyMode "PageDown" },
 
     { key = "0", action = wezterm.action.CopyMode "MoveToStartOfLine" },
     { key = "g", action = wezterm.action.CopyMode "MoveToScrollbackTop" },
     { key = "G", action = wezterm.action.CopyMode "MoveToScrollbackBottom" },
+
+    { key = "/", action = wezterm.action.Search { CaseInSensitiveString = "" } },
+    { key = "n", action = wezterm.action.CopyMode "NextMatch" },
+    { key = "N", action = wezterm.action.CopyMode "PriorMatch" },
 
     { key = "v", action = wezterm.action.CopyMode { SetSelectionMode = "Cell" } },
     { key = "V", action = wezterm.action.CopyMode { SetSelectionMode = "Line" } },
@@ -166,4 +172,3 @@ config.key_tables = {
 }
 
 return config
-
