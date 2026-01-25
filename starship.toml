@@ -6,6 +6,7 @@ $time\
 $directory\
 [](fg:#88C0D0 bg:#1d2230)\
 $git_branch\
+$git_status\
 [](fg:#1d2230)\
 \n$character
 """
@@ -27,7 +28,18 @@ format = "[  $branch ](fg:#769ff0 bg:#1d2230)"
 
 
 [git_status]
-disabled = true
+disabled = false
+format = "[$all_status](fg:#bf616a bg:#1d2230)"
+conflicted = "!"
+stashed = "!"
+deleted = "!"
+renamed = "!"
+modified = "!"
+staged = "!"
+untracked = "!"
+ahead = "!"
+behind = "!"
+diverged = "!"
 
 [cmd_duration]
 min_time = 1
