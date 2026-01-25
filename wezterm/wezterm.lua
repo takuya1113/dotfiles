@@ -144,6 +144,13 @@ config.key_tables = {
     { key = "/", action = wezterm.action.Search { CaseInSensitiveString = "" } },
     { key = "n", action = wezterm.action.CopyMode "NextMatch" },
     { key = "N", action = wezterm.action.CopyMode "PriorMatch" },
+    {
+      key = "P",
+      action = wezterm.action.Multiple {
+        wezterm.action.Search { Regex = "^❯ " },
+        wezterm.action.CopyMode "PriorMatch",
+      },
+    },
 
     { key = "v", action = wezterm.action.CopyMode { SetSelectionMode = "Cell" } },
     { key = "V", action = wezterm.action.CopyMode { SetSelectionMode = "Line" } },
