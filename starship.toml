@@ -17,6 +17,7 @@ symbol = " "
 style = "fg:#2E3440 bg:#88C0D0 bold"
 truncation_length = 3
 truncation_symbol = "../"
+truncate_to_repo = false
 format = "[ $path ]($style)"
 
 
@@ -45,4 +46,3 @@ format = "[  $time ](fg:#88C0D0 bg:#2a2f45)"
 [character]
 success_symbol = "❯ "
 error_symbol = "✗ "
-
