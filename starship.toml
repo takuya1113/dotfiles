@@ -1,0 +1,48 @@
+add_newline = true
+
+format = """
+$time\
+[](fg:#2a2f45 bg:#88C0D0)\
+$directory\
+[](fg:#88C0D0 bg:#1d2230)\
+$git_branch\
+[](fg:#1d2230)\
+\n$character
+"""
+
+
+[fill]
+symbol = " "
+[directory]
+style = "fg:#2E3440 bg:#88C0D0 bold"
+truncation_length = 3
+truncation_symbol = "../"
+format = "[ $path ]($style)"
+
+
+[git_branch]
+format = "[  $branch ](fg:#769ff0 bg:#1d2230)"
+
+
+
+[git_status]
+disabled = true
+
+[cmd_duration]
+min_time = 1
+format = "[ $duration ](fg:#e0af68) "
+
+
+
+[time]
+disabled = false
+time_format = "%R"
+format = "[  $time ](fg:#88C0D0 bg:#2a2f45)"
+
+
+
+
+[character]
+success_symbol = "❯ "
+error_symbol = "✗ "
+
