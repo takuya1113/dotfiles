@@ -2,6 +2,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.termguicolors = true
+vim.g.mapleader = ","
 
 -- macOS クリップボードと常に連携（yank/delete が OS クリップボードへ）
 vim.opt.clipboard = "unnamedplus"
@@ -22,7 +23,10 @@ vim.opt.rtp:prepend(lazypath)
 -- plugins
 require("lazy").setup({
   { "rebelot/kanagawa.nvim", priority = 1000 },
+  { "williamboman/mason.nvim", config = true },
+  { "williamboman/mason-lspconfig.nvim" },
   { "neovim/nvim-lspconfig" },
+  { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -40,8 +44,44 @@ vim.cmd.colorscheme("kanagawa")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
--- TypeScript LSP（typescript-language-server 経由）
-vim.lsp.config("ts_ls", {})
+-- nvim-tree
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+require("nvim-tree").setup({
+  view = {
+    width = 30,
+    side = "left",
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+  },
+})
+
+-- LSP
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "bashls", "jsonls", "yamlls", "ts_ls" },
+})
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+    },
+  },
+})
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("bashls")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("yamlls")
 vim.lsp.enable("ts_ls")
 
 -- TypeScript/JavaScript は 2 スペースインデント
