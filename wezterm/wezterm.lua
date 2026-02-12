@@ -67,7 +67,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   end
   local edge_foreground = background
 
-  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+  local raw_title = tab.tab_title and #tab.tab_title > 0 and tab.tab_title or tab.active_pane.title
+  local title = "   " .. wezterm.truncate_right(raw_title, max_width - 1) .. "   "
 
   return {
     { Background = { Color = edge_background } },
@@ -106,8 +107,27 @@ config.keys = {
 
   -- タブ操作（macでも有効に）
   { key = "t", mods = "LEADER", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
-  { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
-  { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
+  {
+    key = ",",
+    mods = "LEADER",
+    action = wezterm.action.PromptInputLine {
+      description = "Rename tab",
+      action = wezterm.action_callback(function(window, pane, line)
+        if line == nil then
+          return
+        end
+        local tab = window:active_tab()
+        if not tab then
+          return
+        end
+        tab:set_title(line)
+      end),
+    },
+  },
+  { key = "q", mods = "LEADER", action = wezterm.action.CloseCurrentTab { confirm = false } },
+  { key = "Q", mods = "LEADER", action = wezterm.action.QuitApplication },
 
   -- Copy Mode（ログ取得用）
   { key = "y", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
