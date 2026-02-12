@@ -23,6 +23,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { "rebelot/kanagawa.nvim", priority = 1000 },
   { "neovim/nvim-lspconfig" },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+  },
 })
 
 -- kanagawa（透過）
@@ -38,3 +43,14 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- TypeScript LSP（typescript-language-server 経由）
 vim.lsp.config("ts_ls", {})
 vim.lsp.enable("ts_ls")
+
+-- TypeScript/JavaScript は 2 スペースインデント
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
+})
