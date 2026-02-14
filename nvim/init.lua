@@ -84,9 +84,9 @@ vim.lsp.enable("jsonls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("ts_ls")
 
--- TypeScript/JavaScript は 2 スペースインデント
+-- TypeScript/JavaScript/JSON は 2 スペースインデント
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc" },
   callback = function()
     vim.opt_local.expandtab = true
     vim.opt_local.tabstop = 2
