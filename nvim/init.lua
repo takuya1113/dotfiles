@@ -1,6 +1,6 @@
 -- basics
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.o.termguicolors = true
 vim.g.mapleader = ","
 
@@ -83,6 +83,21 @@ vim.lsp.enable("bashls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("ts_ls")
+
+-- Diagnostic keymaps
+vim.keymap.set("n", "<leader>dn", function()
+  vim.diagnostic.goto_next({ float = true })
+end, { desc = "Next diagnostic" })
+
+vim.keymap.set("n", "<leader>dp", function()
+  vim.diagnostic.goto_prev({ float = true })
+end, { desc = "Prev diagnostic" })
+
+vim.keymap.set("n", "<leader>dt", function()
+  local current = vim.diagnostic.config().virtual_text
+  local enabled = current ~= false
+  vim.diagnostic.config({ virtual_text = not enabled })
+end, { desc = "Toggle diagnostic virtual text" })
 
 -- TypeScript/JavaScript/JSON は 2 スペースインデント
 vim.api.nvim_create_autocmd("FileType", {
