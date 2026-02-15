@@ -59,6 +59,19 @@
 - `:set number`: 行番号表示
 - `:set relativenumber`: 相対行番号表示
 
+## Built-in LSP Keymaps (Neovim v0.11)
+
+LSP が attach されたバッファで使えるデフォルトキー。
+
+- `K`: Hover（型/ドキュメント表示）
+- `grn`: Rename
+- `gri`: Implementations（実装へ）
+- `grr`: References（参照一覧）
+- `gO`: Document Symbols（ファイル内シンボル一覧）
+- `Ctrl-s` (Insert mode): Signature help（引数ヒント）
+- `]d` / `[d`: 次/前の診断へ移動
+- `gl`: カーソル位置の診断を float 表示
+
 ## Your Custom Keymaps
 
 `mapleader` は `,`。
