@@ -61,7 +61,7 @@ require("nvim-tree").setup({
 
 -- LSP
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "bashls", "jsonls", "yamlls", "ts_ls" },
+  ensure_installed = { "lua_ls", "bashls", "jsonls", "yamlls", "ts_ls", "jdtls" },
 })
 
 vim.lsp.config("lua_ls", {
@@ -83,6 +83,29 @@ vim.lsp.enable("bashls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("ts_ls")
+
+-- Java LSP: PATH または Mason 管理下の jdtls を利用
+do
+  local mason_jdtls = vim.fn.stdpath("data") .. "/mason/bin/jdtls"
+  local jdtls_cmd = nil
+
+  if vim.fn.executable("jdtls") == 1 then
+    jdtls_cmd = "jdtls"
+  elseif vim.fn.executable(mason_jdtls) == 1 then
+    jdtls_cmd = mason_jdtls
+  end
+
+  if jdtls_cmd then
+    vim.lsp.config("jdtls", {
+      cmd = { jdtls_cmd },
+    })
+    vim.lsp.enable("jdtls")
+  else
+    vim.schedule(function()
+      vim.notify("jdtls が見つかりません。:MasonInstall jdtls 後に nvim を再起動してください。", vim.log.levels.WARN)
+    end)
+  end
+end
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>dn", function()
@@ -107,5 +130,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
     vim.opt_local.shiftwidth = 2
+  end,
+})
+
+-- Java は 4 スペースインデント
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "java" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
   end,
 })
