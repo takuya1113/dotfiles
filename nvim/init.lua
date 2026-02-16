@@ -1,6 +1,7 @@
 -- basics
 vim.opt.number = true
 vim.opt.relativenumber = false
+vim.opt.wildmenu = true
 vim.o.termguicolors = true
 vim.g.mapleader = ","
 
@@ -44,12 +45,39 @@ vim.cmd.colorscheme("kanagawa")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
+-- Split below and keep focus on current window
+vim.api.nvim_create_user_command("Sp", function(opts)
+  if opts.args ~= "" then
+    vim.cmd("belowright split " .. vim.fn.fnameescape(opts.args))
+  else
+    vim.cmd("belowright split")
+  end
+  vim.cmd("wincmd p")
+end, { nargs = "?", complete = "file" })
+
+-- Vertical split right and keep focus on current window
+vim.api.nvim_create_user_command("Vsp", function(opts)
+  if opts.args ~= "" then
+    vim.cmd("belowright vsplit " .. vim.fn.fnameescape(opts.args))
+  else
+    vim.cmd("belowright vsplit")
+  end
+  vim.cmd("wincmd p")
+end, { nargs = "?", complete = "file" })
+
 -- nvim-tree
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 require("nvim-tree").setup({
   view = {
     width = 30,
     side = "left",
+  },
+  actions = {
+    open_file = {
+      window_picker = {
+        enable = false,
+      },
+    },
   },
   renderer = {
     group_empty = true,
