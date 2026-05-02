@@ -91,7 +91,7 @@ config.keys = {
     key = "Space",
     mods = "CTRL",
     action = wezterm.action.SendKey {
-      key = "a",
+      key = "]",
       mods = "CTRL",
     },
   },
