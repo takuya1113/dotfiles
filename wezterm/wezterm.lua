@@ -35,11 +35,11 @@ config.font = wezterm.font_with_fallback({
   "Hiragino Sans",
 })
 
-config.font_size = 15.5
+config.font_size = 13.5
 config.bold_brightens_ansi_colors = true
 
 -- タブバー
-config.enable_tab_bar = true
+config.enable_tab_bar = false
 config.use_fancy_tab_bar = false
 config.window_background_gradient = {
   colors = {"#000000"},
@@ -86,115 +86,19 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 config.adjust_window_size_when_changing_font_size = false
-
--- ===== 操作系（今回追加する部分） =====
-
--- leader（Windows側と揃える）
-config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1200 }
-
 config.keys = {
-  -- 分割（vim寄せ）
-  { key = "v", mods = "LEADER",
-    action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
-  { key = "s", mods = "LEADER",
-    action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" } },
-
-  -- ペイン移動
-  { key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection "Left" },
-  { key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection "Down" },
-  { key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection "Up" },
-  { key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection "Right" },
-
-  -- タブ操作（macでも有効に）
-  { key = "t", mods = "LEADER", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
-  { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
-  { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
   {
-    key = ",",
-    mods = "LEADER",
-    action = wezterm.action.PromptInputLine {
-      description = "Rename tab",
-      action = wezterm.action_callback(function(window, pane, line)
-        if line == nil then
-          return
-        end
-        local tab = window:active_tab()
-        if not tab then
-          return
-        end
-        tab:set_title(line)
-      end),
-    },
-  },
-  { key = "q", mods = "LEADER", action = wezterm.action.CloseCurrentTab { confirm = false } },
-  { key = "Q", mods = "LEADER", action = wezterm.action.QuitApplication },
-
-  -- Copy Mode（ログ取得用）
-  { key = "y", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
-    -- リサイズモード
-  {
-    key = "r",
-    mods = "LEADER",
-    action = wezterm.action.ActivateKeyTable {
-      name = "resize_pane",
-      one_shot = false,
-      timeout_milliseconds = 3000,
+    key = "Space",
+    mods = "CTRL",
+    action = wezterm.action.SendKey {
+      key = "a",
+      mods = "CTRL",
     },
   },
   {
     key = "b",
-    mods = "LEADER",
+    mods = "CMD|SHIFT",
     action = wezterm.action.EmitEvent "toggle-blur",
-  },
-}
-
-config.key_tables = {
-  copy_mode = {
-    { key = "h", action = wezterm.action.CopyMode "MoveLeft" },
-    { key = "j", action = wezterm.action.CopyMode "MoveDown" },
-    { key = "k", action = wezterm.action.CopyMode "MoveUp" },
-    { key = "l", action = wezterm.action.CopyMode "MoveRight" },
-    { key = "u", action = wezterm.action.CopyMode "PageUp" },
-    { key = "d", action = wezterm.action.CopyMode "PageDown" },
-
-    { key = "0", action = wezterm.action.CopyMode "MoveToStartOfLine" },
-    { key = "g", action = wezterm.action.CopyMode "MoveToScrollbackTop" },
-    { key = "G", action = wezterm.action.CopyMode "MoveToScrollbackBottom" },
-
-    { key = "/", action = wezterm.action.Search { CaseInSensitiveString = "" } },
-    { key = "n", action = wezterm.action.CopyMode "NextMatch" },
-    { key = "N", action = wezterm.action.CopyMode "PriorMatch" },
-    {
-      key = "P",
-      action = wezterm.action.Multiple {
-        wezterm.action.Search { Regex = "^❯ " },
-        wezterm.action.CopyMode "PriorMatch",
-      },
-    },
-
-    { key = "v", action = wezterm.action.CopyMode { SetSelectionMode = "Cell" } },
-    { key = "V", action = wezterm.action.CopyMode { SetSelectionMode = "Line" } },
-
-    {
-      key = "y",
-      action = wezterm.action.Multiple {
-        wezterm.action.CopyTo "Clipboard",
-        wezterm.action.CopyMode "Close",
-      },
-    },
-
-    { key = "Escape", action = wezterm.action.CopyMode "Close" },
-    { key = "q", action = wezterm.action.CopyMode "Close" },
-  },
-
-  resize_pane = {
-    { key = "h", action = wezterm.action.AdjustPaneSize { "Left",  3 } },
-    { key = "j", action = wezterm.action.AdjustPaneSize { "Down",  2 } },
-    { key = "k", action = wezterm.action.AdjustPaneSize { "Up",    2 } },
-    { key = "l", action = wezterm.action.AdjustPaneSize { "Right", 3 } },
-
-    { key = "Escape", action = wezterm.action.PopKeyTable },
-    { key = "Enter",  action = wezterm.action.PopKeyTable },
   },
 }
 
