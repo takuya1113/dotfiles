@@ -34,6 +34,7 @@ config.font = wezterm.font_with_fallback({
   { family = "Menlo", weight = "Bold" },
   "Hiragino Sans",
 })
+config.harfbuzz_features = { "calt=0", "liga=0" }
 
 config.font_size = 13.5
 config.bold_brightens_ansi_colors = true

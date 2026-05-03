@@ -1,9 +1,137 @@
 {
-  "System.out.println": {
-    "prefix": "sout",
+  "public": {
+    "prefix": "pu",
     "body": [
-      "System.out.println(${1:\"msg\"});"
+      "public "
     ],
-    "description": "Print a value to standard output"
+    "description": "public"
+  },
+  "private": {
+    "prefix": "pr",
+    "body": [
+      "private "
+    ],
+    "description": "private"
+  },
+  "void": {
+    "prefix": "vo",
+    "body": [
+      "void $0"
+    ],
+    "description": "void"
+  },
+  "String": {
+    "prefix": "st",
+    "body": [
+      "String $0"
+    ],
+    "description": "String"
+  },
+  "class": {
+    "prefix": "cl",
+    "body": [
+      "class "
+    ],
+    "description": "class"
+  },
+  "extends": {
+    "prefix": "ex",
+    "body": [
+      "extends "
+    ],
+    "description": "extends"
+  },
+  "return": {
+    "prefix": "re",
+    "body": [
+      "return "
+    ],
+    "description": "return"
+  },
+  "interface": {
+    "prefix": "ifc",
+    "body": [
+      "interface "
+    ],
+    "description": "interface"
+  },
+  "implements": {
+    "prefix": "im",
+    "body": [
+      "implements "
+    ],
+    "description": "implements"
+  },
+  "boolean": {
+    "prefix": "bo",
+    "body": [
+      "boolean $0"
+    ],
+    "description": "boolean"
+  },
+  "this.": {
+    "prefix": "th",
+    "body": [
+      "this.${1}"
+    ],
+    "description": "this."
+  },
+  "throw": {
+    "prefix": "thr",
+    "body": [
+      "throw "
+    ],
+    "description": "throw"
+  },
+  "throws": {
+    "prefix": "thrs",
+    "body": [
+      "throws "
+    ],
+    "description": "throws"
+  },
+  "public static class": {
+    "prefix": "pusc",
+    "body": [
+      "public static class $0"
+    ],
+    "description": "ps class"
+  },
+  "private static class": {
+    "prefix": "prsc",
+    "body": [
+      "private static class $0"
+    ],
+    "description": "prs class"
+  },
+  "public static void": {
+    "prefix": "psv",
+    "body": [
+      "public static void $0"
+    ],
+    "description": "psv"
+  },
+  "public static void main": {
+    "prefix": "psvm",
+    "body": [
+      "public static void main(String[] args) {",
+      "    ${1}",
+      "}"
+    ],
+    "description": "main"
+  },
+  "System.out.print": {
+    "prefix": "sopr",
+    "body": [
+      "System.out.print(${1});"
+    ],
+    "description": "print"
+  },
+  "System.out.println": {
+    "prefix": "sop",
+    "body": [
+      "System.out.println(${1});"
+    ],
+    "description": "println"
   }
 }
