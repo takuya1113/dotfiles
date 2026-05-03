@@ -49,7 +49,7 @@ require("lazy").setup({
     lazy = false,
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "html", "xml", "javascript", "typescript", "tsx" },
+        ensure_installed = { "html", "xml", "java", "javascript", "typescript", "tsx" },
         auto_install = true,
         highlight = {
           enable = true,
@@ -125,6 +125,14 @@ local selection_highlights = {
   Visual = { bg = "#41507a", bold = true },
   VisualNOS = { bg = "#41507a", bold = true },
 }
+local java_semantic_highlights = {
+  ["@keyword.java"] = { fg = "#957fb8" },
+  ["@keyword.modifier.java"] = { fg = "#e6c384", italic = true },
+  ["@lsp.type.keyword.java"] = { fg = "#957fb8" },
+  ["@lsp.type.modifier.java"] = { fg = "#e6c384", italic = true },
+  ["@lsp.type.class.java"] = { fg = "#7e9cd8" },
+  ["@lsp.type.interface.java"] = { fg = "#7fb4ca" },
+}
 local transparent_groups = {
   "Normal",
   "NormalFloat",
@@ -153,6 +161,10 @@ local function apply_kanagawa_background()
   end
 
   for group, opts in pairs(selection_highlights) do
+    vim.api.nvim_set_hl(0, group, opts)
+  end
+
+  for group, opts in pairs(java_semantic_highlights) do
     vim.api.nvim_set_hl(0, group, opts)
   end
 end
