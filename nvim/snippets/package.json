@@ -1,0 +1,11 @@
+{
+  "name": "dotfiles-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "java",
+        "path": "./java.json"
+      }
+    ]
+  }
+}
