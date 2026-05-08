@@ -25,6 +25,9 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 })
 
 vim.keymap.set("n", "<F5>", "<cmd>checktime<CR>", { desc = "Reload file changed outside Neovim" })
+vim.keymap.set("n", "<C-w>m", "<C-w>_<C-w>|", { desc = "Maximize window" })
+vim.keymap.set("n", "<leader>t", "<cmd>belowright split | terminal<CR>", { desc = "Open terminal below" })
+vim.keymap.set("t", "<C-g>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 
 -- lazy.nvim bootstrap（最小）
@@ -193,6 +196,7 @@ vim.api.nvim_create_user_command("NvimTransparentOff", function()
 end, {})
 
 vim.keymap.set("n", "<leader>tt", "<cmd>NvimTransparentToggle<CR>", { desc = "Toggle transparent background" })
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Hide search highlight" })
 
 -- Split below and keep focus on current window
 vim.api.nvim_create_user_command("Sp", function(opts)
@@ -215,7 +219,8 @@ vim.api.nvim_create_user_command("Vsp", function(opts)
 end, { nargs = "?", complete = "file" })
 
 -- nvim-tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Focus file tree" })
+vim.keymap.set("n", "<leader>ze", "<cmd>NvimTreeClose<CR>", { desc = "Close file tree" })
 require("nvim-tree").setup({
   view = {
     width = 30,

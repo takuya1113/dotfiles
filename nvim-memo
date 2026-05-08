@@ -1,0 +1,28 @@
+##
+- 背景変更
+- javaの文字色調整
+- ,hで検索ハイライトクリア
+- 画面最大化( ctrl-w -> |とctrl-w -> _をctrl-w -> mでまとめた)
+- NvimTreeのフォーカスと開閉調整(,e and ,ze)
+- :terminalからノーマルモードに移る(ctrl-gをターミナルモード時のノーマ移動用に)
+- terminalを下に開くコマンド追加,t
+
+
+##
+- Ctrl-w w: 次のウィンドウへ移動
+- Ctrl-w h/j/k/l: 左下上右へ移動
+- Ctrl-w H/J/K/L: 今のウィンドウを左下上右へ移し替え
+- Ctrl-w =: サイズを揃える
+- Ctrl-w _: 高さ最大化
+- Ctrl-w |: 幅最大化
+- Ctrl-w c: 今のウィンドウを閉じる
+- Ctrl-w o: 今のウィンドウ以外を閉じる
+
+実用度が高いのはこのあたりです。
+
+- :Sp file
+- :vsp file
+- :Vsp file
+- Ctrl-w r: 配置を入れ替える
+- Ctrl-w x: 隣と交換
+- Ctrl-w T: 今のウィンドウを新しいタブへ出す
