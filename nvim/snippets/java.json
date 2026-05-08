@@ -13,6 +13,41 @@
     ],
     "description": "private"
   },
+  "protected": {
+    "prefix": "pro",
+    "body": [
+      "protected "
+    ],
+    "description": "protected"
+  },
+  "abstract": {
+    "prefix": "ab",
+    "body": [
+      "abstract "
+    ],
+    "description": "abstract"
+  },
+  "assertEquals": {
+    "prefix": "ae",
+    "body": [
+      "assertEquals(${1}, ${2});"
+    ],
+    "description": "assertEquals"
+  },
+  "assertThrows": {
+    "prefix": "ath",
+    "body": [
+      "assertThrows(${1:Exception.class}, () -> ${2});"
+    ],
+    "description": "assertThrows"
+  },
+  "assertTrue": {
+    "prefix": "atr",
+    "body": [
+      "assertTrue(${1});"
+    ],
+    "description": "assertTrue"
+  },
   "void": {
     "prefix": "vo",
     "body": [
@@ -34,6 +69,24 @@
     ],
     "description": "class"
   },
+  "public class": {
+    "prefix": "puc",
+    "body": [
+      "public class ${1:Main} {",
+      "    ${2}",
+      "}"
+    ],
+    "description": "p class"
+  },
+  "private class": {
+    "prefix": "prc",
+    "body": [
+      "private class ${1:Name} {",
+      "    ${2}",
+      "}"
+    ],
+    "description": "pr class"
+  },
   "extends": {
     "prefix": "ex",
     "body": [
@@ -51,7 +104,7 @@
   "interface": {
     "prefix": "ifc",
     "body": [
-      "interface "
+      "interface $0"
     ],
     "description": "interface"
   },
@@ -93,16 +146,34 @@
   "public static class": {
     "prefix": "pusc",
     "body": [
-      "public static class $0"
+      "public static class ${1:Name} {",
+      "    ${2}",
+      "}"
     ],
     "description": "ps class"
   },
   "private static class": {
     "prefix": "prsc",
     "body": [
-      "private static class $0"
+      "private static class ${1:Name} {",
+      "    ${2}",
+      "}"
     ],
     "description": "prs class"
+  },
+  "List": {
+    "prefix": "li",
+    "body": [
+      "List<${1}> ${2}"
+    ],
+    "description": "List"
+  },
+  "ArrayList": {
+    "prefix": "ali",
+    "body": [
+      "new ArrayList<>()$0"
+    ],
+    "description": "ArrayList"
   },
   "public static void": {
     "prefix": "psv",
